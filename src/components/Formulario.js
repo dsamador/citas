@@ -9,6 +9,8 @@ export default function Formulario() {
             sintomas:''
         })
 
+    const [error, actualizarError] = useState(false);
+
     //Funcion que se ejecuta cada que el usuario escribe en el input
     const actualizarState = (e)=>{
         actualizarCita({
@@ -17,13 +19,36 @@ export default function Formulario() {
         })
     }
 
+    //Cuando se envia el formulario
+    const submitCita = (e)=>{
+        e.preventDefault();
+        
+        //Validar
+        if(mascota.trim() === '' || propietario.trim() === '' || fecha.trim() === '' ||
+        hora.trim() === '' || sintomas.trim() === '')
+        {
+            actualizarError(true)
+        }
+
+        //Asignar un ID
+
+        //Crear la cita
+
+        //Reiniciar el form
+
+
+    }
+
     //Extraer los valores
     const {mascota, propietario, fecha, hora, sintomas} = cita;
 
     return (
         <>
             <h2>Crear cita</h2>
-            <form action="">
+            {error ? <p className="alerta-error">Debes llenar todos los campos del formulario</p> : null}
+            <form 
+                onSubmit={submitCita}
+            >
                 <label htmlFor="">Nombre de mascota</label>
                 <input 
                     type="text" 
@@ -73,7 +98,7 @@ export default function Formulario() {
                 <button 
                     type="submit"
                     className="u-full-width button-primary"
-                ></button>
+                >Enviar</button>
             </form>
         </>
     )
