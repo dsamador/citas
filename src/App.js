@@ -16,6 +16,7 @@ function App() {
 
   //ciertas operaciones cuando el dom cambia
   useEffect(()=>{
+    let citasIniciales = JSON.parse(localStorage.getItem('citas'));
     if(citasIniciales){
       localStorage.setItem('citas', JSON.stringify(citas));
     }else{

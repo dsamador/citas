@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import PropTypes from 'prop-types';
 
 export default function Formulario({crearCita}) {
 
@@ -116,3 +117,6 @@ export default function Formulario({crearCita}) {
     )
 }
 
+Formulario.propTypes = {
+    crearCita: PropTypes.func.isRequired,
+}
