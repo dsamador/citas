@@ -1,21 +1,37 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import Formulario from "./components/Formulario";
 import Cita from "./components/Cita";
 
 function App() {
+
+  //citas en localstorage
+  let citasIniciales = JSON.parse(localStorage.getItem('citas'));
+  if(!citasIniciales){
+    citasIniciales = [];
+  }
+
   //Arreglo de citas
-  const [citas, guardarCitas] = useState([]);
+  const [citas, guardarCitas] = useState(citasIniciales);
+
+  //ciertas operaciones cuando el dom cambia
+  useEffect(()=>{
+    if(citasIniciales){
+      localStorage.setItem('citas', JSON.stringify(citas));
+    }else{
+      localStorage.setItem('citas', JSON.stringify([]));
+    }
+  }, [citas]);
 
   //Funcion que tome las citas actuales y guarde la nueva
   const crearCita = (cita)=> {
     guardarCitas([...citas, cita]);
-  }
+  };
 
   //Funcion que elimina una cita por su id
   const eliminarCita = (id)=> {
     guardarCitas(citas.filter(cita => cita.id !== id));
-  }
+  };
 
   //Mensaje condicional
 
