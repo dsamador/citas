@@ -1,4 +1,5 @@
 import {useState} from 'react';
+
 export default function Formulario() {
 
     const [cita, actualizarCita] = useState({
@@ -29,8 +30,12 @@ export default function Formulario() {
         {
             actualizarError(true)
         }
+        //Eliminar el mensaje de error previo
+        actualizarError(false);
 
         //Asignar un ID
+        cita.id = JSON.stringify(new Date());
+        console.log(cita)
 
         //Crear la cita
 
