@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-export default function Formulario() {
+export default function Formulario({crearCita}) {
 
     const [cita, actualizarCita] = useState({
             mascota:'',
@@ -38,6 +38,7 @@ export default function Formulario() {
         console.log(cita)
 
         //Crear la cita
+        crearCita(cita);
 
         //Reiniciar el form
 
